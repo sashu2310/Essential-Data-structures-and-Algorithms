@@ -13,6 +13,17 @@ snode* create_node(){           //creating node through dynamic memory allocatio
     temp->next = NULL;
     return temp;
 }
+
+int list_length() {
+	int length=0;
+	node *temp = head;
+	while(temp!=Null) {
+		length++;
+		temp=temp->next; }
+	return length;
+		
+}
+
 void insert_at_tail(int data) {     //inserting node at the end of the linked list
     snode *temp, *p;
     temp = create_node();
@@ -28,7 +39,7 @@ void insert_at_tail(int data) {     //inserting node at the end of the linked li
     }
 }
 
-void insert_at_head(int data)
+void insert_at_head(int data)		// Insert the newly created node at the beginning of the list
 {
     snode *temp, *p;
     temp = create_node();
@@ -44,6 +55,20 @@ void insert_at_head(int data)
     }
 }
 
+void insert_at_position(int data,int position) {	//Insert the newly created node at any specified position 
+    int length;
+    node *temp,*p;
+    temp=create_node();
+    temp->data = data;
+    p = head;
+    if(length = list_length()<position-1)    	//checking whether list is long enough
+	    printf("Position doesn't exists");
+    while(temp!=NULL || i<position) {
+        p = p->next;
+    }
+    temp->next = p->next;
+    p->next = temp;
+}
 
 void print(){                   //printing all the members of the linked list
     snode *temp = head;
