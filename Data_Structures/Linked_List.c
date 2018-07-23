@@ -28,6 +28,23 @@ void insert_at_tail(int data) {     //inserting node at the end of the linked li
     }
 }
 
+void insert_at_head(int data)
+{
+    snode *temp, *p;
+    temp = create_node();
+    temp->data=data;
+    if(head==NULL) {
+        head = temp;
+    }
+    else
+    {
+        p=head;
+        temp->next=p;
+        head=temp;
+    }
+}
+
+
 void print(){                   //printing all the members of the linked list
     snode *temp = head;
     while(temp!=NULL) {
