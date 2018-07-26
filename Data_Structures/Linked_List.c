@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <stdlib.h>
 struct node {
     int data;
     struct node *next;
@@ -67,7 +67,7 @@ void insert_at_position(int data,int position) {
     else if(position==1)
         insert_at_head(data);
     else {
-    temp=create_node();
+    temp = (struct node*) malloc(sizeof(struct node));
     temp->data = data;
     p = head;
     position--;
