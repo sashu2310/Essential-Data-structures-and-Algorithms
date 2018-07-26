@@ -8,13 +8,7 @@ struct node {
 // creating new alias as a type for struct node      
 struct node *head = NULL;
 
-// snode* create_node(){           //creating node through dynamic memory allocation
-//     snode *temp;
-//     temp = (snode*) malloc(sizeof(snode));  //malloc() function returns the address of the memory location from heap section
-//     temp->next = NULL;
-//     return temp;
-// }
-
+//Finding length of our linked list
 int list_length() {
     struct node *temp = head;
     int length=0;
@@ -23,7 +17,8 @@ int list_length() {
     return length;
 }
 
-void insert_at_tail(int data) {     //inserting node at the end of the linked list
+ //inserting node at the end of the linked list
+void insert_at_tail(int data) {    
     struct node *temp, *current;
     temp = (struct node*) malloc(sizeof(struct node));
     temp->data = data;
@@ -33,10 +28,13 @@ void insert_at_tail(int data) {     //inserting node at the end of the linked li
     else {
         current = head;
         while(current!=NULL) {
-         current = current->next; }
+         current = current->next; 
+         }
          current->next = temp;
     }
 }
+
+//inserting node at the beginning of the linked list
 void insert_at_head(int data)
 {
     struct node *temp, *p;
@@ -53,8 +51,11 @@ void insert_at_head(int data)
         head = temp;
     }
 }
+
+//Inserting at specified position
 void insert_at_position(int data,int position) {
-    struct node *temp,*p;
+    struct node *temp,*p,*temp1;
+    int k=1;
     //considering 1 as the first position 
     if(list_length()<position)  {
         printf("Not enough long");
@@ -67,23 +68,47 @@ void insert_at_position(int data,int position) {
     else if(position==1)
         insert_at_head(data);
     else {
-    temp = (struct node*) malloc(sizeof(struct node));
-    temp->data = data;
-    p = head;
-    position--;
-    // drive to the one node before the position
-    while(position--) {
-        p = p->next;
-    }
-    //link new node to it's neighbour
-    temp->next = p->next;
-    //link previous node to new node
-    p->next = temp;
+        temp = (struct node*) malloc(sizeof(struct node));
+        temp->data = data;
+        temp->next = NULL;
+        temp1 = head;
+        // drive to the one node before the position
+        while(p != NULL && k < position) {
+            k++;
+            p = temp1;
+            temp1 = temp1->next;
+        }
+        //link new node to it's neighbour
+        temp->next = temp1;
+        //link previous node to new node
+        p->next = temp;
     }
 }
 
-void delete_at_tail() {
-    
+void delete_node(int position) {
+    struct node *temp = head, *temp1;
+    int k = 1;
+    //considering 1 as the first position
+    if(position<1 || list_length()<position || head==NULL)
+    {
+        printf("Error\n");
+        return;
+    } 
+    if(position==1)
+    {
+        head = NULL;
+        free(temp);
+    }
+    else 
+    {
+        while(temp != NULL && k<position) { 
+            temp1 = temp;
+            temp = temp->next; 
+            k++;
+            }
+        temp1->next=temp->next;
+        free(temp);
+    }
 }
 
 void print(){                   //printing all the members of the linked list
