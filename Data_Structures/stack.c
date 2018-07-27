@@ -1,6 +1,4 @@
-/*
-Implemented via Array
-*/
+
 #include<stdio.h>
 #define MAX 100001;                 // Max size of stack
 int stack [MAX];
