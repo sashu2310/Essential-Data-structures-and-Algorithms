@@ -12,8 +12,10 @@ struct node *head = NULL;
 int list_length() {
     struct node *temp = head;
     int length=0;
-    while(temp!=NULL)
+    while(temp!=NULL) {
         length++;
+	temp=temp->next;
+    }
     return length;
 }
 
