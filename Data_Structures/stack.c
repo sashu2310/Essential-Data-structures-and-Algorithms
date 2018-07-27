@@ -20,7 +20,6 @@ int pop() {                         //function to remove elements from top
     data = stack[top];               // extracting top element
     top--;                           //decrementing size
     return data;
-
 }
  int main() {
    int choice,value;
