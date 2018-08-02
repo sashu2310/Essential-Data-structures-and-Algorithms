@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <math.h>
+#define min(a,b) (((a)<(b))?a:b)
+
+int jumpSearch(int n, int key,int *A) {
+
+        int prev = 0, step = sqrt(n);   // Block size set to the root of no. of elements 
+        while(A[min(step,n)-1]<key) {
+        prev=step;
+        //increase steps 
+        step+=sqrt(n);
+        // To check that our search doesn't goes beyond the array limit
+        if(prev>=n)
+            return -1;
+    }
+    
+    while(A[prev]<key) {
+        prev++;
+        // To check search doesn't goes beyond the block
+        if(prev==min(step,n))
+            return -1;
+    }
+    // if element found
+    if(A[prev]==key)
+        return prev;
+}
+    
+int main(){
+    
+	// Array must be sorted
+	int A[9] = {0,1,1,2,3,5,8,13,21};
+	printf("%d\n", jumpSearch(9,21,&A[0]));      
+}
